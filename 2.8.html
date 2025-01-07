@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prácticas Unificadas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Mostrar u ocultar secciones
+        function mostrarPractica(id) {
+            document.querySelectorAll('.practica').forEach(section => section.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+        }
+    </script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto py-10">
+        <h1 class="text-3xl font-bold text-center mb-6">Prácticas de JavaScript</h1>
+        
+        <!-- Botones de navegación -->
+        <div class="flex justify-center gap-4 mb-8">
+            <button onclick="mostrarPractica('practica1')" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Práctica 2.1</button>
+            <button onclick="mostrarPractica('practica2')" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Práctica 2.2</button>
+            <button onclick="mostrarPractica('practica3')" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Práctica 2.3</button>
+            <button onclick="mostrarPractica('practica4')" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Práctica 2.4</button>
+            <button onclick="mostrarPractica('practica5')" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Práctica 2.5</button>
+            <button onclick="mostrarPractica('practica6')" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Práctica 2.6</button>
+            <button onclick="mostrarPractica('practica7')" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Práctica 2.7</button>
+        </div>
+
+        <!-- Secciones de prácticas -->
+        <div id="practica1" class="practica hidden"></div>
+        <div id="practica2" class="practica hidden"></div>
+        <div id="practica3" class="practica hidden"></div>
+        <div id="practica4" class="practica hidden"></div>
+        <div id="practica5" class="practica hidden"></div>
+        <div id="practica6" class="practica hidden"></div>
+        <div id="practica7" class="practica hidden"></div>
+    </div>
+    <script>
+        document.getElementById('practica1').innerHTML = `
+            <h2 class="text-xl font-semibold mb-4">Práctica 2.1: Par o Impar</h2>
+            <label for="numero1" class="block mb-2">Ingrese un número:</label>
+            <input id="numero1" type="number" class="border rounded px-4 py-2 mb-4 w-full">
+            <button onclick="ejecutarPractica1()" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Verificar</button>
+            <p id="resultado1" class="mt-4 text-lg font-semibold"></p>
+        `;
+        function ejecutarPractica1() {
+            const numero = document.getElementById("numero1").value;
+            const resultado = document.getElementById("resultado1");
+    
+            if (numero === "") {
+                resultado.textContent = "Por favor, ingrese un número.";
+                resultado.className = "text-red-500";
+                return;
+            }
+    
+            const numeroConvertido = Number(numero);
+            if (isNaN(numeroConvertido)) {
+                resultado.textContent = "El valor ingresado no es un número válido.";
+                resultado.className = "text-red-500";
+            } else if (numeroConvertido % 2 === 0) {
+                resultado.textContent = `El número ${numeroConvertido} es par.`;
+                resultado.className = "text-green-500";
+            } else {
+                resultado.textContent = `El número ${numeroConvertido} es impar.`;
+                resultado.className = "text-green-500";
+            }
+        }
+    </script>
+    
+    <script>
+        document.getElementById('practica2').innerHTML = `
+            <h2 class="text-xl font-semibold mb-4">Práctica 2.2: Número Mayor</h2>
+            <label for="num1" class="block mb-2">Primer número:</label>
+            <input id="num1" type="number" class="border rounded px-4 py-2 mb-2 w-full">
+            <label for="num2" class="block mb-2">Segundo número:</label>
+            <input id="num2" type="number" class="border rounded px-4 py-2 mb-2 w-full">
+            <label for="num3" class="block mb-2">Tercer número:</label>
+            <input id="num3" type="number" class="border rounded px-4 py-2 mb-4 w-full">
+            <button onclick="ejecutarPractica2()" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Comparar</button>
+            <p id="resultado2" class="mt-4 text-lg font-semibold"></p>
+        `;
+        function ejecutarPractica2() {
+            const num1 = Number(document.getElementById("num1").value);
+            const num2 = Number(document.getElementById("num2").value);
+            const num3 = Number(document.getElementById("num3").value);
+            const resultado = document.getElementById("resultado2");
+    
+            if (isNaN(num1) || isNaN(num2) || isNaN(num3)) {
+                resultado.textContent = "Por favor, ingrese números válidos en todos los campos.";
+                resultado.className = "text-red-500";
+                return;
+            }
+    
+            const numbers = [num1, num2, num3];
+            const max = Math.max(...numbers);
+            const count = numbers.filter(num => num === max).length;
+    
+            if (count > 1) {
+                resultado.textContent = `El número mayor es ${max} y se repite ${count} veces.`;
+            } else {
+                resultado.textContent = `El número mayor es ${max}.`;
+            }
+            resultado.className = "text-green-500";
+        }
+    </script>
+    <script>
+        document.getElementById('practica3').innerHTML = `
+            <h2 class="text-xl font-semibold mb-4">Práctica 2.3: Calificación</h2>
+            <label for="calificacion" class="block mb-2">Ingrese la calificación (0-10):</label>
+            <input id="calificacion" type="number" class="border rounded px-4 py-2 mb-4 w-full">
+            <button onclick="ejecutarPractica3()" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Evaluar</button>
+            <p id="resultado3" class="mt-4 text-lg font-semibold"></p>
+        `;
+        function ejecutarPractica3() {
+            const calificacion = Number(document.getElementById("calificacion").value);
+            const resultado = document.getElementById("resultado3");
+    
+            if (isNaN(calificacion) || calificacion < 0 || calificacion > 10) {
+                resultado.textContent = "Por favor, ingrese un número válido entre 0 y 10.";
+                resultado.className = "text-red-500";
+                return;
+            }
+    
+            if (calificacion <= 5) resultado.textContent = "Reprobado.";
+            else if (calificacion <= 7) resultado.textContent = "Regular.";
+            else if (calificacion === 8) resultado.textContent = "Bien.";
+            else if (calificacion === 9) resultado.textContent = "Muy bien.";
+            else resultado.textContent = "Excelente.";
+    
+            resultado.className = "text-green-500";
+        }
+    </script>
+    <script>
+        document.getElementById('practica4').innerHTML = `
+            <h2 class="text-xl font-semibold mb-4">Práctica 2.4: Validar Rango</h2>
+            <label for="numero4" class="block mb-2">Ingrese un número entre 1 y 100:</label>
+            <input id="numero4" type="number" class="border rounded px-4 py-2 mb-4 w-full">
+            <button onclick="ejecutarPractica4()" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Validar</button>
+            <p id="resultado4" class="mt-4 text-lg font-semibold"></p>
+        `;
+        function ejecutarPractica4() {
+            const numero = Number(document.getElementById("numero4").value);
+            const resultado = document.getElementById("resultado4");
+    
+            if (isNaN(numero)) {
+                resultado.textContent = "Por favor, ingrese un número válido.";
+                resultado.className = "text-red-500";
+                return;
+            }
+    
+            if (numero >= 1 && numero <= 100) {
+                resultado.textContent = `El número ${numero} está dentro del rango.`;
+                resultado.className = "text-green-500";
+            } else {
+                resultado.textContent = `El número ${numero} está fuera del rango.`;
+                resultado.className = "text-red-500";
+            }
+        }
+    </script>
+    <script>
+        document.getElementById('practica5').innerHTML = `
+            <h2 class="text-xl font-semibold mb-4">Práctica 2.5: Secuencia de Fibonacci</h2>
+            <label for="numero5" class="block mb-2">Ingrese un número para generar la secuencia:</label>
+            <input id="numero5" type="number" class="border rounded px-4 py-2 mb-4 w-full">
+            <button onclick="ejecutarPractica5()" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Generar</button>
+            <p id="resultado5" class="mt-4 text-lg font-semibold"></p>
+        `;
+        function ejecutarPractica5() {
+            const numero = Number(document.getElementById("numero5").value);
+            const resultado = document.getElementById("resultado5");
+    
+            if (isNaN(numero) || numero < 0) {
+                resultado.textContent = "Por favor, ingrese un número válido mayor o igual a 0.";
+                resultado.className = "text-red-500";
+                return;
+            }
+    
+            if (numero === 0) {
+                resultado.textContent = "La secuencia de Fibonacci es: []";
+            } else if (numero === 1) {
+                resultado.textContent = "La secuencia de Fibonacci es: [0]";
+            } else {
+                let fibonacci = [0, 1];
+                for (let i = 2; i < numero; i++) {
+                    fibonacci.push(fibonacci[i - 1] + fibonacci[i - 2]);
+                }
+                resultado.textContent = `La secuencia de Fibonacci con ${numero} elementos es: [${fibonacci.join(", ")}]`;
+            }
+            resultado.className = "text-green-500";
+        }
+    </script>
+    <script>
+        document.getElementById('practica6').innerHTML = `
+            <h2 class="text-xl font-semibold mb-4">Práctica 2.6: Palíndromo</h2>
+            <label for="numero6" class="block mb-2">Ingrese un número:</label>
+            <input id="numero6" type="number" class="border rounded px-4 py-2 mb-4 w-full">
+            <button onclick="ejecutarPractica6()" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Verificar</button>
+            <p id="resultado6" class="mt-4 text-lg font-semibold"></p>
+        `;
+        function ejecutarPractica6() {
+            const numero = document.getElementById("numero6").value;
+            const resultado = document.getElementById("resultado6");
+    
+            if (isNaN(numero) || numero < 0) {
+                resultado.textContent = "Por favor, ingrese un número entero positivo.";
+                resultado.className = "text-red-500";
+                return;
+            }
+    
+            const numString = numero.toString();
+            const reversed = numString.split('').reverse().join('');
+            if (numString === reversed) {
+                resultado.textContent = `${numero} es un palíndromo.`;
+                resultado.className = "text-green-500";
+            } else {
+                resultado.textContent = `${numero} no es un palíndromo.`;
+                resultado.className = "text-red-500";
+            }
+        }
+    </script>
+
+    <script>
+        document.getElementById('practica7').innerHTML = `
+            <h2 class="text-xl font-semibold mb-4">Práctica 2.7: Anagramas</h2>
+            <label for="palabra1" class="block mb-2">Primera palabra:</label>
+            <input id="palabra1" type="text" class="border rounded px-4 py-2 mb-2 w-full">
+            <label for="palabra2" class="block mb-2">Segunda palabra:</label>
+            <input id="palabra2" type="text" class="border rounded px-4 py-2 mb-4 w-full">
+            <button onclick="ejecutarPractica7()" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Verificar</button>
+            <p id="resultado7" class="mt-4 text-lg font-semibold"></p>
+        `;
+        function ejecutarPractica7() {
+            const palabra1 = document.getElementById("palabra1").value.toLowerCase().trim();
+            const palabra2 = document.getElementById("palabra2").value.toLowerCase().trim();
+            const resultado = document.getElementById("resultado7");
+
+            if (!palabra1 || !palabra2) {
+                resultado.textContent = "Por favor, ingrese ambas palabras.";
+                resultado.className = "text-red-500";
+                return;
+            }
+
+            const sortWord = word => word.split('').sort().join('');
+            if (sortWord(palabra1) === sortWord(palabra2)) {
+                resultado.textContent = `"${palabra1}" y "${palabra2}" son anagramas.`;
+                resultado.className = "text-green-500";
+            } else {
+                resultado.textContent = `"${palabra1}" y "${palabra2}" no son anagramas.`;
+                resultado.className = "text-red-500";
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
